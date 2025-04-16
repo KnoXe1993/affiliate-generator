@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Affiliate Link Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input[type=text] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0073e6;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 12px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h2>Amazon Affiliate Link Generator</h2>
+  <p>Füge eine beliebige Amazon-Produkt-URL ein. Die ASIN wird automatisch erkannt und in deinen Affiliate-Link umgewandelt.</p>
+  <input type="text" id="urlInput" placeholder="Amazon-URL hier eingeben...">
+  <button onclick="generateLink()">Affiliate-Link erzeugen</button>
+  <div id="output" class="output" style="display:none;"></div>
+
+  <script>
+    function generateLink() {
+      const input = document.getElementById("urlInput").value;
+      const output = document.getElementById("output");
+      const partnerID = "brinify-21";
+
+      const dpIndex = input.indexOf("/dp/");
+      if (dpIndex === -1) {
+        output.innerText = "❌ Fehler: Keine ASIN gefunden.";
+        output.style.display = "block";
+        return;
+      }
+
+      const asinStart = dpIndex + 4;
+      const asin = input.substring(asinStart).split(/[/?&#]/)[0];
+
+      if (!/^B0[A-Z0-9]{8}$/i.test(asin)) {
+        output.innerText = "❌ Fehler: Ungültige ASIN.";
+        output.style.display = "block";
+        return;
+      }
+
+      const affiliateLink = `https://www.amazon.de/dp/${asin}?tag=${partnerID}&linkCode=ll1&language=de_DE&ref_=as_li_ss_tl`;
+      output.innerHTML = `✅ <strong>Affiliate-Link:</strong><br><a href="${affiliateLink}" target="_blank">${affiliateLink}</a>`;
+      output.style.display = "block";
+    }
+  </script>
+</body>
+</html>
