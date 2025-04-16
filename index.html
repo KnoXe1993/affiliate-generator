@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: sans-serif;
-      max-width: 600px;
+      max-width: 700px;
       margin: 50px auto;
       padding: 20px;
       border-radius: 16px;
@@ -36,6 +36,19 @@
       border-radius: 8px;
       word-wrap: break-word;
     }
+    .steps {
+      margin-top: 40px;
+      background: #fff;
+      border-left: 4px solid #0073e6;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .steps h3 {
+      margin-top: 0;
+    }
+    .steps ol {
+      padding-left: 20px;
+    }
   </style>
 </head>
 <body>
@@ -44,6 +57,17 @@
   <input type="text" id="urlInput" placeholder="Amazon-URL hier eingeben...">
   <button onclick="generateLink()">Affiliate-Link erzeugen</button>
   <div id="output" class="output" style="display:none;"></div>
+
+  <div class="steps">
+    <h3>🔗 Anleitung: So erzeugst du deinen Amazon Affiliate-Link</h3>
+    <ol>
+      <li><strong>Amazon-Produkt aufrufen:</strong><br>Gehe auf <a href="https://www.amazon.de" target="_blank">amazon.de</a> und öffne die Produktseite, die du teilen möchtest.</li>
+      <li><strong>Link kopieren:</strong><br>Kopiere die vollständige URL aus der Adresszeile deines Browsers.</li>
+      <li><strong>Link in die Web-App einfügen:</strong><br>Füge den kopierten Amazon-Link in das Textfeld oben ein.</li>
+      <li><strong>Auf „Affiliate-Link erzeugen“ klicken:</strong><br>Der Link wird automatisch umgewandelt.</li>
+      <li><strong>Affiliate-Link kopieren & teilen:</strong><br>Teile den erzeugten Link z. B. auf Social Media, in Streams oder auf deiner Website.</li>
+    </ol>
+  </div>
 
   <script>
     function generateLink() {
